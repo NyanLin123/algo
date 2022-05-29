@@ -41,3 +41,5 @@ class graph(object):
     def getChildren(self, node):
         return self.edges[node]
 
+    def hasNode(self, node):
+        return node in self.edges
