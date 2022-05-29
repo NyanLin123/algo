@@ -19,3 +19,25 @@ class Edge(object):
     
     def __str__(self):
         return self.src.getSrc()+'---->'+self.dest.getDest()
+
+class graph(object):
+    def __init__(self):
+        self.edges = {}
+    
+    def addNode(self, node):
+        if node in self.edge:
+            raise ValueError("Duplicated Node")
+        else:
+            self.edges[node]=[]
+
+    def addEdge(self, edge):
+        src = edge.getSrc()
+        dest = edge.getDest()
+        if not(src in self.edges and dest in self.edges):
+            raise ValueError("Don't see Node")
+        else:
+            self.edges[src].append(dest)
+
+    def getChildren(self, node):
+        return self.edges[node]
+
