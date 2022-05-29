@@ -1,3 +1,6 @@
+from math import dist
+
+
 class Node(object):
     def __init__(self, name):
         self.name = name
@@ -43,3 +46,17 @@ class graph(object):
 
     def hasNode(self, node):
         return node in self.edges
+
+    def __str__(self):
+        result = ''
+        for src in self.edges:
+            for dest in self.edges[src]:
+                result = result + src.getName() + '----->'+dest.getName()
+        return result[:-1]
+
+class Graph(graph):
+    def addEdge(self, edge):
+        graph.addEdge(self, edge)
+        rev = Edge(edge.getDestination(), edge.getSource())
+        graph.addEdge(self, rev)
+
