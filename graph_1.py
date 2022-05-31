@@ -1,26 +1,29 @@
-class node(object):
+class Node(object):
     def __init__(self, name):
         self.name = name
+    
     def getName(self):
         return self.name
+
     def __str__(self):
         return self.name
 
-class edge(object):
+class Edge(object):
     def __init__(self, src, dest):
         self.src = src
         self.dest = dest
 
     def getSrc(self):
         return self.src
-    
+
     def getDest(self):
         return self.dest
-    
-    def __str__(self):
-        return self.getSrc()+' ----> '+ self.getDest()
 
-class graph(object):
+    def __str__(self):
+        return self.src.getSrc()+' -------> '+self.dest.getDest()
+
+class Graph(object):
+    # create new dictionary
     def __init__(self):
         self.edges = {}
     
@@ -28,51 +31,52 @@ class graph(object):
         if node in self.edges:
             raise ValueError("Duplicated Node")
         else:
-            self.edges[node]=[]
+            self.edges[node] = []
 
     def addEdge(self, edge):
         src = edge.getSrc()
         dest = edge.getDest()
-        if not(src in self.edges and dest in self.edges):
-            raise ValueError("Don't see Node")
-        else:
-            self.edges[src].append(dest)
+        if not( src in self.edges and dest in self.edges):
+            raise ValueError("Don't see")
+        self.edges[src].append(dest)
 
-    def getNode(self,name):
-        for n in self.edges:
-            if n == name:
-                return n
+    
+    def getNode(self, name):
+        for node in self.edges:
+            if node == name:
+                return node
             else:
-                NameError(name)
+                raise NameError("Name Error")
 
     def getChildren(self, node):
         return self.edges[node]
 
     def hasNode(self, node):
-        return node in self.edges
+        return node in self.eges
 
     def __str__(self):
         result = ''
         for src in self.edges:
             for dest in self.edges[src]:
-                result = result + src + '----->'+dest+'\n'
-        return result[:-1]
-        
-class Graph(graph):
-    def addEdge(self, edge):
-        graph.addEdge(self, edge)
-        rev = Edge(edge.getDestination(), edge.getSource())
-        graph.addEdge(self, rev)
+                result = result+ src +' -----> '+ dest + '\n'
+        return result
 
 
-def cityGraph(graphType):
-    for node in ('Maw','Than','Mu','Yan','Sag','Man'):
-        graphType.addNode(node)
-    graphType.addEdge(edge(graphType.getNode('Maw'), graphType.getNode('Yan')))
-    graphType.addEdge(edge(graphType.getNode('Than'), graphType.getNode('Sag')))
-    graphType.addEdge(edge(graphType.getNode('Man'), graphType.getNode('Maw')))
-    graphType.addEdge(edge(graphType.getNode('Mu'), graphType.getNode('Sag')))
-    graphType.addEdge(edge(graphType.getNode('Maw'), graphType.getNode('Yan')))
-    return graphType
 
-print(cityGraph(graph()))
+def cityGraph(g):
+    for city in ("maw","yan","mu","than","pyin","nay","man"):
+        g.addNode(city)
+    g.addEdge(Edge("maw","man"))
+    g.addEdge(Edge("maw","mu"))
+    g.addEdge(Edge("maw","pyin"))
+    g.addEdge(Edge("nay","maw"))
+    g.addEdge(Edge("mu","pyin"))
+    g.addEdge(Edge("than","man"))
+    g.addEdge(Edge("than","nay"))
+    g.addEdge(Edge("than","yan"))
+    g.addEdge(Edge("than","pyin"))
+    result = g.getChildren("maw")
+
+    return result
+    
+print(cityGraph(Graph()))
