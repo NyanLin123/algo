@@ -54,6 +54,9 @@ class Graph(object):
     def hasNode(self, node):
         return node in self.eges
 
+    def returnGraph(self):
+        return self.edges
+
     def __str__(self):
         result = ''
         for src in self.edges:
@@ -75,8 +78,32 @@ def cityGraph(g):
     g.addEdge(Edge("than","nay"))
     g.addEdge(Edge("than","yan"))
     g.addEdge(Edge("than","pyin"))
-    result = g.getChildren("maw")
-
-    return result
     
-print(cityGraph(Graph()))
+
+    return g.returnGraph()
+
+def printPath(path):
+    result = ''
+    for i in path:
+        result = result+'->'+i
+    return result
+
+def dfs(graph, start, end, path, shortest, toPrint):
+    path = path + [start]
+    if toPrint:
+        print("Current DFS path:", printPath(path))
+    if start == end:
+        return path
+    for node in graph[start]:
+        if node not in path:
+            if shortest == None or len(path)<len(shortest):
+                newPath = dfs(graph, node, end, path, shortest, toPrint)
+                if newPath != None:
+                    shortest = newPath
+            elif toPrint:
+                print("Expressed path")
+    return shortest
+
+g = cityGraph(Graph())
+
+dfs(g, 'maw','pyin',[], None, toPrint=True)
