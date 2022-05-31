@@ -1,3 +1,4 @@
+from curses import newpad
 from turtle import st
 
 
@@ -107,4 +108,21 @@ def dfs(graph, start, end, path, shortest, toPrint):
 
 g = cityGraph(Graph())
 
-dfs(g, 'maw', 'pyin', [], None, toPrint=True)
+def bfs(graph, start, end, toPrint):
+    initPath = [start]
+    pathQueue = [initPath]
+    while len(pathQueue) != 0:
+        tmpPath = pathQueue.pop(0)
+        if toPrint:
+            print('Current BFS path:', printPath(tmpPath))
+        lastNode = tmpPath[-1]
+        if lastNode == end:
+            return tmpPath
+        for nextNode in graph.getChildren(lastNode):
+            if nextNode not in tmpPath:
+                newPath = tmpPath +[nextNode]
+                pathQueue.append(newPath)
+    return None
+
+
+bfs(g, 'maw', 'pyin',toPrint=True)
