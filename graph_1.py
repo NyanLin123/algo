@@ -124,7 +124,9 @@ def bfs(graph, start, end, toPrint):
                 pathQueue.append(newPath)
     return None
 
-
-bfs(g, 'maw', 'pyin', toPrint=True)
-
+print("Depth First Search")
+dfs(g, 'maw', 'pyin', [], None, toPrint=True)
+print('------------')
+print("Breath First Search")
+bfs(g,'maw','pyin', toPrint=True)
 
