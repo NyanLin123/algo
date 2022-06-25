@@ -1,5 +1,3 @@
-from curses import newpad
-from turtle import st
 
 
 class Node(object):
@@ -124,12 +122,12 @@ def bfs(graph, start, end, toPrint):
                 pathQueue.append(newPath)
     return None
 
-print("Depth First Search")
-dfs(g, 'maw', 'pyin', [], None, toPrint=True)
+# print("Depth First Search")
+# dfs(g, 'maw', 'pyin', [], None, toPrint=True)
 print('------------')
 print("Breath First Search")
-bfs(g,'maw','pyin', toPrint=True)
-
+print(bfs(g,'maw','pyin', toPrint=True))
+# print(g)
 class Graph:
     def __init__(self, vertices):
         self.V = vertices
@@ -168,10 +166,10 @@ lst = ["A", "B", "C", "D", "E"]
 for i in lst:
     g.addNode(i)
 
-g.add_edge("A", "C", 6)
-g.add_edge("A", "D", 5)
-g.add_edge("B", "C", 1)
-g.add_edge("A", "B", 2)
-g.add_edge("C", "E", 2)
+# g.add_edge("A", "C", 6)
+# g.add_edge("A", "D", 5)
+# g.add_edge("B", "C", 1)
+# g.add_edge("A", "B", 2)
+# g.add_edge("C", "E", 2)
 
-g.bellmanFord("E")
+# g.bellmanFord("C")
