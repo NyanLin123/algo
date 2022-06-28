@@ -1,5 +1,5 @@
 pat = 'abcdacedeacd'
-txt = 'abcda'
+txt = 'ced'
 
 def nav(pattern, text):
     abs_pat = len(pattern)
@@ -12,8 +12,8 @@ def nav(pattern, text):
                 j += 1
             else:
                 break
-        else:
-            print('fount at position end at ', j)
+        if j > 2:
+            print(i+1)
 
 
 nav(pat, txt)
