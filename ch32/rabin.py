@@ -1,27 +1,29 @@
+from math import prod
+
+
 pat = 'aabbccedace'
 txt = 'bcce'
 
-def makedict(**kwargs):
-    return kwargs
+character = 'abcdefghijklmnopqrstuvwxyz'
 
-def produce_dictionary():
-    txt = 'abcdefghijklmnopqrstuvwxyz'
-    code = 1
-    for i in txt:
-        makedict(i=code)
-        code += 1
-    return makedict
-
-def product_hashcode(character):
-    result = 0
+def produce_char_code(character):
+    code = {}
+    index = 1
     for i in character:
-        result += i
-    return result
+        code[i]= index
+        index += 1
+    return code
 
-def Rubin(pattern, text):
-    return 'success'
+def rabin(pat, txt):
 
+    match_code = produce_char_code(character)
+    
+    m = len(pat)
+    n = len(txt)
 
-print(Rubin(pat, txt))
+    for i in range(m-n+1):
+        j = 0
+        if txt[j] == pat[i]:
+            count += 1
 
-print(produce_dictionary)
+rabin(pat, txt)
