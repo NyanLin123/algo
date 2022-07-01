@@ -1,5 +1,3 @@
-from math import prod
-
 
 pat = 'aabbccedace'
 txt = 'bcce'
@@ -14,16 +12,31 @@ def produce_char_code(character):
         index += 1
     return code
 
+def compare_character(char_dic, single_character):
+    for i in char_dic:
+        if i.keys == single_character:
+            return i.values()
+        else:
+            return "Error"
+
+def calculation_single_code(text_pattern):
+    result = 0
+    for i in text_pattern:
+        result += compare_character(produce_char_code(character), i)
+
+    return result
+
+
 def rabin(pat, txt):
 
     match_code = produce_char_code(character)
-    
+
     m = len(pat)
     n = len(txt)
 
     for i in range(m-n+1):
         j = 0
-        if txt[j] == pat[i]:
+        if compare_character(match_code, txt[j]) == compare_character(match_code, pat[i]):
             count += 1
 
-rabin(pat, txt)
+print(produce_char_code(character).has_key('a'))
